@@ -79,7 +79,7 @@ class="h-20 w-auto">
 
 <nav class="hidden md:flex gap-10 text-sm font-medium">
 
-<a href="#" class="hover:text-green">Home</a>
+<a href="#">Home</a>
 <a href="#about" class="hover:text-green">About</a>
 <a href="#services" class="hover:text-green">Services</a>
 <a href="#contact" class="hover:text-green">Contact</a>
@@ -106,7 +106,7 @@ class="w-full h-[80vh] object-cover">
 
 <div class="absolute inset-0 flex items-center">
 
-<div class="max-w-7xl mx-auto px-6 lg:px-20 reveal">
+<div class="max-w-7xl mx-auto px-6 lg:px-20">
 
 <div class="max-w-2xl text-white">
 
@@ -226,43 +226,13 @@ Property & Facilities Services
 </section>
 
 
-<!-- WHY CHOOSE US -->
-
-<section class="py-20 bg-navy text-white">
-
-<div class="max-w-7xl mx-auto px-6 lg:px-20">
-
-<div class="grid md:grid-cols-3 gap-10 text-center">
-
-<div class="reveal">
-<h3 class="text-4xl font-bold text-green">20+</h3>
-<p class="mt-3 text-white/80">Years property experience</p>
-</div>
-
-<div class="reveal">
-<h3 class="text-4xl font-bold text-green">Yorkshire</h3>
-<p class="mt-3 text-white/80">Local market expertise</p>
-</div>
-
-<div class="reveal">
-<h3 class="text-4xl font-bold text-green">Commercial</h3>
-<p class="mt-3 text-white/80">Investor focused approach</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
+<!-- CONTACT WITH MAP -->
 
 <section id="contact" class="py-20 bg-light">
 
 <div class="max-w-7xl mx-auto px-6 lg:px-20">
 
 <div class="grid lg:grid-cols-2 gap-14 items-center">
-
-<!-- CONTACT TEXT -->
 
 <div class="reveal">
 
@@ -274,10 +244,6 @@ Discuss your property requirements
 Sheriff Consultancy supports investors, landlords and businesses with property acquisitions and facilities management across Leeds and Yorkshire.
 </p>
 
-<p class="mt-4 text-gray-600">
-Get in touch to discuss your property project or operational requirements.
-</p>
-
 <a href="mailto:info@sheriffconsultancy.co.uk"
 class="mt-8 inline-block bg-green text-white px-8 py-4 font-semibold">
 Send Enquiry
@@ -285,16 +251,12 @@ Send Enquiry
 
 </div>
 
-
-<!-- GOOGLE MAP -->
-
 <div class="reveal">
 
 <iframe
 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150789.01432942526!2d-1.7005379938762477!3d53.80588954288893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48793e4ada64bd99%3A0x51adbafd0213dca9!2sLeeds!5e0!3m2!1sen!2suk!4v1773257981648!5m2!1sen!2suk"
 class="w-full h-[420px] border-0 rounded-lg shadow"
-loading="lazy"
-referrerpolicy="no-referrer-when-downgrade">
+loading="lazy">
 </iframe>
 
 </div>
@@ -302,8 +264,6 @@ referrerpolicy="no-referrer-when-downgrade">
 </div>
 
 </div>
-
-</section>
 
 </section>
 
@@ -351,7 +311,6 @@ referrerpolicy="no-referrer-when-downgrade">
 <div class="border-t border-gray-800 mt-12 pt-6 flex justify-between text-sm">
 
 <p>© 2026 Sheriff Consultancy</p>
-
 <p>Property Acquisitions & Facilities Management</p>
 
 </div>
@@ -360,8 +319,6 @@ referrerpolicy="no-referrer-when-downgrade">
 
 </footer>
 
-
-<!-- SCROLL ANIMATION SCRIPT -->
 
 <script>
 
@@ -388,6 +345,10 @@ reveals[i].classList.add("active");
 }
 
 window.addEventListener("scroll", reveal);
+
+/* run once on page load */
+
+reveal();
 
 </script>
 
