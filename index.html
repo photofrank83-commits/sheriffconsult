@@ -14,6 +14,9 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- Feather Icons -->
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
 <script src="https://cdn.tailwindcss.com"></script>
 
 <script>
@@ -23,7 +26,16 @@ extend:{
 colors:{
 navy:"#0C1A2A",
 green:"#1E7F5C",
-light:"#F6F7F8"
+light:"#F6F7F8",
+ink: "#0B1220",
+line: "#E5E7EB",
+muted: "#6B7280",
+paper: "#FAFAFA",
+card: "#F5F6F7"
+},
+boxShadow: {
+soft: "0 10px 24px rgba(2, 6, 23, 0.08)",
+crisp: "0 10px 20px rgba(2, 6, 23, 0.10)"
 }
 }
 }
@@ -37,7 +49,6 @@ font-family:Inter, sans-serif;
 }
 
 /* HERO OVERLAY */
-
 .hero-overlay::before{
 content:"";
 position:absolute;
@@ -46,17 +57,72 @@ background:linear-gradient(90deg, rgba(12,26,42,.85) 0%, rgba(12,26,42,.65) 40%,
 }
 
 /* SCROLL ANIMATION */
-
 .reveal{
 opacity:0;
 transform:translateY(40px);
 transition:all .9s ease;
 }
-
 .reveal.active{
 opacity:1;
 transform:translateY(0);
 }
+
+/* Service card styling (matching the reference design) */
+.svc-photoCard{
+border-color: rgba(2,6,23,.10);
+transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+overflow: hidden;
+background: #fff;
+height: 100%;
+display: flex;
+flex-direction: column;
+}
+.svc-photoCard:hover{
+background: rgba(2,6,23,.02);
+border-color: rgba(2,6,23,.18);
+transform: translateY(-2px);
+}
+.svc-photo{
+height: 190px;
+flex: 0 0 auto;
+}
+@media (min-width: 768px){
+.svc-photo{ height: 210px; }
+}
+
+/* Service rail */
+.svc-rail{
+scroll-snap-type: x mandatory;
+scroll-padding-left: 0px;
+scroll-padding-right: 0px;
+overscroll-behavior-x: contain;
+-webkit-overflow-scrolling: touch;
+}
+.svc-track{
+display: flex;
+gap: 24px;
+width: 100%;
+padding-bottom: 8px;
+}
+.svc-item{
+scroll-snap-align: start;
+scroll-snap-stop: always;
+flex: 0 0 100%;
+}
+@media (min-width: 768px){
+.svc-item{ flex-basis: calc((100% - 24px) / 2); }
+}
+@media (min-width: 1024px){
+.svc-item{ flex-basis: calc((100% - (24px * 2)) / 3); }
+}
+
+/* Utility */
+.sq { border-radius: 0 !important; }
+.hairline{ height:1px; background: rgba(2,6,23,.08); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.is-disabled { opacity: .35; cursor: not-allowed; }
 
 </style>
 
@@ -65,291 +131,320 @@ transform:translateY(0);
 <body class="bg-white text-gray-900">
 
 <!-- NAVBAR -->
-
 <header class="sticky top-0 bg-white border-b border-gray-200 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-20">
+    <div class="flex justify-between items-center h-24">
+      <img 
+        src="https://i.postimg.cc/HLWKKPGr/1-(2).jpg"
+        alt="Sheriff Consultancy"
+        class="h-20 w-auto">
 
-<div class="max-w-7xl mx-auto px-6 lg:px-20">
+      <nav class="hidden md:flex gap-10 text-sm font-medium">
+        <a href="#">Home</a>
+        <a href="#about" class="hover:text-green">About</a>
+        <a href="#services" class="hover:text-green">Services</a>
+        <a href="#contact" class="hover:text-green">Contact</a>
+      </nav>
 
-<div class="flex justify-between items-center h-24">
-
-<img 
-src="https://i.postimg.cc/HLWKKPGr/1-(2).jpg"
-alt="Sheriff Consultancy"
-class="h-20 w-auto">
-
-<nav class="hidden md:flex gap-10 text-sm font-medium">
-
-<a href="#">Home</a>
-<a href="#about" class="hover:text-green">About</a>
-<a href="#services" class="hover:text-green">Services</a>
-<a href="#contact" class="hover:text-green">Contact</a>
-
-</nav>
-
-<a href="#contact" class="bg-green text-white px-6 py-3 text-sm font-semibold hover:bg-green/90">
-Enquiry
-</a>
-
-</div>
-
-</div>
-
+      <a href="#contact" class="bg-green text-white px-6 py-3 text-sm font-semibold hover:bg-green/90">
+        Enquiry
+      </a>
+    </div>
+  </div>
 </header>
 
-
 <!-- HERO -->
-
 <section class="relative hero-overlay">
-
-<img src="https://images.unsplash.com/photo-1589200412753-7330b5aa86b9?q=80&w=1600&auto=format&fit=crop"
-class="w-full h-[80vh] object-cover">
-
-<div class="absolute inset-0 flex items-center">
-
-<div class="max-w-7xl mx-auto px-6 lg:px-20">
-
-<div class="max-w-2xl text-white">
-
-<p class="uppercase text-xs tracking-[.3em] text-white/70">
-Leeds & Yorkshire
-</p>
-
-<h1 class="mt-4 text-5xl font-semibold leading-tight">
-Property Acquisitions &
-Facilities Management
-</h1>
-
-<p class="mt-6 text-lg text-white/80">
-Strategic property acquisition and professional facilities management services for investors, landlords and commercial occupiers.
-</p>
-
-<div class="mt-8 flex gap-4">
-
-<a href="#contact"
-class="bg-green px-6 py-3 font-semibold text-white">
-Discuss a project
-</a>
-
-<a href="#services"
-class="border border-white px-6 py-3 font-semibold hover:bg-white hover:text-navy transition">
-View services
-</a>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
+  <img src="https://images.unsplash.com/photo-1589200412753-7330b5aa86b9?q=80&w=1600&auto=format&fit=crop"
+       class="w-full h-[80vh] object-cover">
+  <div class="absolute inset-0 flex items-center">
+    <div class="max-w-7xl mx-auto px-6 lg:px-20">
+      <div class="max-w-2xl text-white">
+        <p class="uppercase text-xs tracking-[.3em] text-white/70">
+          Leeds & Yorkshire
+        </p>
+        <h1 class="mt-4 text-5xl font-semibold leading-tight">
+          Property Acquisitions &
+          Facilities Management
+        </h1>
+        <p class="mt-6 text-lg text-white/80">
+          Strategic property acquisition and professional facilities management services for investors, landlords and commercial occupiers.
+        </p>
+        <div class="mt-8 flex gap-4">
+          <a href="#contact"
+             class="bg-green px-6 py-3 font-semibold text-white">
+            Discuss a project
+          </a>
+          <a href="#services"
+             class="border border-white px-6 py-3 font-semibold hover:bg-white hover:text-navy transition">
+            View services
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
-
 
 <!-- ABOUT -->
-
 <section id="about" class="py-20 bg-light">
-
-<div class="max-w-7xl mx-auto px-6 lg:px-20">
-
-<div class="grid lg:grid-cols-2 gap-14 items-center reveal">
-
-<img src="https://images.unsplash.com/photo-1592990493772-6b25eb2ae72b?q=80&w=1170&auto=format&fit=crop"
-class="w-full h-[420px] object-cover">
-
-<div>
-
-<p class="uppercase text-xs tracking-[.3em] text-green font-semibold">
-About Sheriff Consultancy
-</p>
-
-<h2 class="mt-4 text-3xl font-semibold">
-Property expertise with a practical approach
-</h2>
-
-<p class="mt-6 text-gray-600 leading-relaxed">
-Sheriff Consultancy supports property investors and businesses with acquisitions and facilities management across Leeds and Yorkshire.
-</p>
-
-<p class="mt-4 text-gray-600 leading-relaxed">
-We combine practical property knowledge with a commercial mindset to deliver strong outcomes for our clients.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="max-w-7xl mx-auto px-6 lg:px-20">
+    <div class="grid lg:grid-cols-2 gap-14 items-center reveal">
+      <img src="https://images.unsplash.com/photo-1592990493772-6b25eb2ae72b?q=80&w=1170&auto=format&fit=crop"
+           class="w-full h-[420px] object-cover">
+      <div>
+        <p class="uppercase text-xs tracking-[.3em] text-green font-semibold">
+          About Sheriff Consultancy
+        </p>
+        <h2 class="mt-4 text-3xl font-semibold">
+          Property expertise with a practical approach
+        </h2>
+        <p class="mt-6 text-gray-600 leading-relaxed">
+          Sheriff Consultancy supports property investors and businesses with acquisitions and facilities management across Leeds and Yorkshire.
+        </p>
+        <p class="mt-4 text-gray-600 leading-relaxed">
+          We combine practical property knowledge with a commercial mindset to deliver strong outcomes for our clients.
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
 
-
-<!-- SERVICES -->
-
+<!-- SERVICES - REDESIGNED SECTION (matching the provided T1 Asset Management style) -->
 <section id="services" class="py-20">
+  <div class="max-w-7xl mx-auto px-6 lg:px-20">
+    
+    <!-- Section header -->
+    <div class="max-w-3xl reveal">
+      <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Services</p>
+      <h2 class="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">Property & Facilities Services</h2>
+      <p class="mt-5 text-muted leading-relaxed">
+        We provide specialist support across property acquisitions, facilities management and consultancy — from identifying opportunities to ensuring buildings operate efficiently. Our advice is tailored to your objectives.
+      </p>
+      <div class="mt-7 flex flex-col sm:flex-row gap-3">
+        <a href="#contact" class="inline-flex items-center justify-center px-5 py-3 sq bg-navy text-white text-sm font-semibold hover:bg-black transition">
+          Discuss a project
+        </a>
+        <a href="#contact" class="inline-flex items-center justify-center px-5 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+          Speak to a specialist
+        </a>
+      </div>
+    </div>
 
-<div class="max-w-7xl mx-auto px-6 lg:px-20">
+    <!-- Services slider rail -->
+    <div class="mt-10 md:mt-14 relative">
+      <div id="svcRail" class="svc-rail overflow-x-auto no-scrollbar">
+        <div class="svc-track">
 
-<div class="max-w-2xl reveal">
+          <!-- Service Card 1: Property Acquisitions (using image from list: commercial building) -->
+          <article class="svc-item sq border svc-photoCard reveal">
+            <div class="svc-photo">
+              <img src="https://images.unsplash.com/photo-1588671186197-7fb734e9c33a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                   alt="Property Acquisitions"
+                   class="w-full h-full object-cover" loading="lazy" decoding="async"/>
+            </div>
+            <div class="p-7 md:p-8">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-xl font-semibold tracking-tight">Property Acquisitions</h3>
+                <i data-feather="search" class="w-5 h-5"></i>
+              </div>
+              <p class="mt-3 text-sm leading-relaxed text-muted">
+                Identifying and securing property opportunities for investors and developers. From site appraisal to negotiation.
+              </p>
+              <a href="#contact" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                Enquire <i data-feather="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </article>
 
-<p class="uppercase text-xs tracking-[.3em] text-green font-semibold">
-Services
-</p>
+          <!-- Service Card 2: Facilities Management (using image from list: building management) -->
+          <article class="svc-item sq border svc-photoCard reveal">
+            <div class="svc-photo">
+              <img src="https://images.unsplash.com/photo-1526637201259-da59cb348242?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                   alt="Facilities Management"
+                   class="w-full h-full object-cover" loading="lazy" decoding="async"/>
+            </div>
+            <div class="p-7 md:p-8">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-xl font-semibold tracking-tight">Facilities Management</h3>
+                <i data-feather="settings" class="w-5 h-5"></i>
+              </div>
+              <p class="mt-3 text-sm leading-relaxed text-muted">
+                Ensuring buildings operate efficiently and safely. Maintenance, compliance, and operational support for landlords and occupiers.
+              </p>
+              <a href="#contact" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                Enquire <i data-feather="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </article>
 
-<h2 class="mt-4 text-3xl font-semibold">
-Property & Facilities Services
-</h2>
+          <!-- Service Card 3: Property Consultancy (using image from list: meeting/advice) -->
+          <article class="svc-item sq border svc-photoCard reveal">
+            <div class="svc-photo">
+              <img src="https://images.unsplash.com/photo-1667658070381-c46a2c6643a7?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                   alt="Property Consultancy"
+                   class="w-full h-full object-cover" loading="lazy" decoding="async"/>
+            </div>
+            <div class="p-7 md:p-8">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-xl font-semibold tracking-tight">Property Consultancy</h3>
+                <i data-feather="briefcase" class="w-5 h-5"></i>
+              </div>
+              <p class="mt-3 text-sm leading-relaxed text-muted">
+                Strategic property advice for owners, investors and occupiers. Portfolio reviews, development appraisals and asset strategies.
+              </p>
+              <a href="#contact" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                Enquire <i data-feather="arrow-right" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </article>
 
-</div>
+        </div>
+      </div>
 
-<div class="grid md:grid-cols-3 gap-8 mt-12">
-
-<div class="border p-8 hover:shadow-lg transition reveal">
-<h3 class="text-xl font-semibold">Property Acquisitions</h3>
-<p class="mt-4 text-gray-600">Identifying property opportunities for investors and developers.</p>
-</div>
-
-<div class="border p-8 hover:shadow-lg transition reveal">
-<h3 class="text-xl font-semibold">Facilities Management</h3>
-<p class="mt-4 text-gray-600">Ensuring buildings operate efficiently and safely.</p>
-</div>
-
-<div class="border p-8 hover:shadow-lg transition reveal">
-<h3 class="text-xl font-semibold">Property Consultancy</h3>
-<p class="mt-4 text-gray-600">Strategic property advice for owners and occupiers.</p>
-</div>
-
-</div>
-
-</div>
-
+      <!-- Slider controls -->
+      <div class="mt-8 flex items-center gap-3 reveal">
+        <button type="button" id="svcPrev" class="w-10 h-10 sq border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center" aria-label="Previous">
+          <i data-feather="chevron-left" class="w-4 h-4"></i>
+        </button>
+        <button type="button" id="svcNext" class="w-10 h-10 sq border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center" aria-label="Next">
+          <i data-feather="chevron-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 </section>
-
 
 <!-- CONTACT WITH MAP -->
-
 <section id="contact" class="py-20 bg-light">
-
-<div class="max-w-7xl mx-auto px-6 lg:px-20">
-
-<div class="grid lg:grid-cols-2 gap-14 items-center">
-
-<div class="reveal">
-
-<h2 class="text-3xl font-semibold">
-Discuss your property requirements
-</h2>
-
-<p class="mt-4 text-gray-600">
-Sheriff Consultancy supports investors, landlords and businesses with property acquisitions and facilities management across Leeds and Yorkshire.
-</p>
-
-<a href="mailto:info@sheriffconsultancy.co.uk"
-class="mt-8 inline-block bg-green text-white px-8 py-4 font-semibold">
-Send Enquiry
-</a>
-
-</div>
-
-<div class="reveal">
-
-<iframe
-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150789.01432942526!2d-1.7005379938762477!3d53.80588954288893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48793e4ada64bd99%3A0x51adbafd0213dca9!2sLeeds!5e0!3m2!1sen!2suk!4v1773257981648!5m2!1sen!2suk"
-class="w-full h-[420px] border-0 rounded-lg shadow"
-loading="lazy">
-</iframe>
-
-</div>
-
-</div>
-
-</div>
-
+  <div class="max-w-7xl mx-auto px-6 lg:px-20">
+    <div class="grid lg:grid-cols-2 gap-14 items-center">
+      <div class="reveal">
+        <h2 class="text-3xl font-semibold">
+          Discuss your property requirements
+        </h2>
+        <p class="mt-4 text-gray-600">
+          Sheriff Consultancy supports investors, landlords and businesses with property acquisitions and facilities management across Leeds and Yorkshire.
+        </p>
+        <a href="mailto:info@sheriffconsultancy.co.uk"
+           class="mt-8 inline-block bg-green text-white px-8 py-4 font-semibold">
+          Send Enquiry
+        </a>
+      </div>
+      <div class="reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d150789.01432942526!2d-1.7005379938762477!3d53.80588954288893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48793e4ada64bd99%3A0x51adbafd0213dca9!2sLeeds!5e0!3m2!1sen!2suk!4v1773257981648!5m2!1sen!2suk"
+          class="w-full h-[420px] border-0 rounded-lg shadow"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </div>
 </section>
 
-
 <!-- FOOTER -->
-
 <footer class="bg-black text-gray-400">
-
-<div class="max-w-7xl mx-auto px-6 lg:px-20 py-16">
-
-<div class="grid md:grid-cols-4 gap-10">
-
-<div>
-<h3 class="text-white font-semibold mb-4">Sheriff Consultancy</h3>
-<p class="text-sm">Property acquisitions and facilities management across Leeds and Yorkshire.</p>
-</div>
-
-<div>
-<h4 class="text-white font-semibold mb-4">Services</h4>
-<ul class="space-y-2 text-sm">
-<li>Property Acquisitions</li>
-<li>Facilities Management</li>
-<li>Property Consultancy</li>
-</ul>
-</div>
-
-<div>
-<h4 class="text-white font-semibold mb-4">Location</h4>
-<ul class="space-y-2 text-sm">
-<li>Leeds</li>
-<li>West Yorkshire</li>
-<li>United Kingdom</li>
-</ul>
-</div>
-
-<div>
-<h4 class="text-white font-semibold mb-4">Contact</h4>
-<ul class="space-y-2 text-sm">
-<li>info@sheriffconsultancy.co.uk</li>
-</ul>
-</div>
-
-</div>
-
-<div class="border-t border-gray-800 mt-12 pt-6 flex justify-between text-sm">
-
-<p>© 2026 Sheriff Consultancy</p>
-<p>Property Acquisitions & Facilities Management</p>
-
-</div>
-
-</div>
-
+  <div class="max-w-7xl mx-auto px-6 lg:px-20 py-16">
+    <div class="grid md:grid-cols-4 gap-10">
+      <div>
+        <h3 class="text-white font-semibold mb-4">Sheriff Consultancy</h3>
+        <p class="text-sm">Property acquisitions and facilities management across Leeds and Yorkshire.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Services</h4>
+        <ul class="space-y-2 text-sm">
+          <li>Property Acquisitions</li>
+          <li>Facilities Management</li>
+          <li>Property Consultancy</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Location</h4>
+        <ul class="space-y-2 text-sm">
+          <li>Leeds</li>
+          <li>West Yorkshire</li>
+          <li>United Kingdom</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-semibold mb-4">Contact</h4>
+        <ul class="space-y-2 text-sm">
+          <li>info@sheriffconsultancy.co.uk</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-12 pt-6 flex justify-between text-sm">
+      <p>© 2026 Sheriff Consultancy</p>
+      <p>Property Acquisitions & Facilities Management</p>
+    </div>
+  </div>
 </footer>
 
-
 <script>
+  feather.replace();
 
-function reveal(){
+  function reveal(){
+    let reveals = document.querySelectorAll(".reveal");
+    for(let i=0; i<reveals.length; i++){
+      let windowHeight = window.innerHeight;
+      let elementTop = reveals[i].getBoundingClientRect().top;
+      let elementVisible = 120;
+      if(elementTop < windowHeight - elementVisible){
+        reveals[i].classList.add("active");
+      }
+    }
+  }
+  window.addEventListener("scroll", reveal);
+  reveal(); // run once on page load
 
-let reveals=document.querySelectorAll(".reveal");
+  // Services slider functionality (matching the reference)
+  const rail = document.getElementById("svcRail");
+  const prev = document.getElementById("svcPrev");
+  const next = document.getElementById("svcNext");
 
-for(let i=0;i<reveals.length;i++){
+  function gapPx(){
+    return 24; // fixed gap
+  }
 
-let windowHeight=window.innerHeight;
+  function stepSize(){
+    const first = rail.querySelector(".svc-item");
+    if(!first) return 360;
+    return Math.round(first.getBoundingClientRect().width + gapPx());
+  }
 
-let elementTop=reveals[i].getBoundingClientRect().top;
+  function snapTo(dir){
+    const step = stepSize();
+    const max = rail.scrollWidth - rail.clientWidth;
+    const current = rail.scrollLeft;
+    const idx = Math.round(current / step);
+    const target = Math.min(max, Math.max(0, (idx + dir) * step));
+    rail.scrollTo({ left: target, behavior: "smooth" });
+  }
 
-let elementVisible=120;
+  if(prev && next) {
+    prev.addEventListener("click", () => snapTo(-1));
+    next.addEventListener("click", () => snapTo(1));
 
-if(elementTop < windowHeight - elementVisible){
+    function updateDisabled(){
+      const max = rail.scrollWidth - rail.clientWidth - 2;
+      const atStart = rail.scrollLeft <= 2;
+      const atEnd = rail.scrollLeft >= max;
+      prev.disabled = atStart;
+      next.disabled = atEnd;
+      prev.classList.toggle("is-disabled", atStart);
+      next.classList.toggle("is-disabled", atEnd);
+    }
 
-reveals[i].classList.add("active");
-
-}
-
-}
-
-}
-
-window.addEventListener("scroll", reveal);
-
-/* run once on page load */
-
-reveal();
-
+    rail.addEventListener("scroll", () => requestAnimationFrame(updateDisabled));
+    window.addEventListener("resize", () => {
+      const step = stepSize();
+      if(step > 0){
+        const idx = Math.round(rail.scrollLeft / step);
+        rail.scrollTo({ left: idx * step });
+      }
+      updateDisabled();
+    });
+    updateDisabled();
+  }
 </script>
 
 </body>
